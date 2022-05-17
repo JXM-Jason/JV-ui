@@ -20,17 +20,17 @@
 </template>
 
 <script lang="ts">
-import { inject } from "vue"
-import TopNav from "../components/Topnav.vue"
+import { inject } from "vue";
+import TopNav from "../components/Topnav.vue";
 export default {
   components: {
     TopNav,
   },
   setup() {
-    let asideView = inject("asideView")
-    return { asideView }
+    let asideView = inject("asideView");
+    return { asideView };
   },
-}
+};
 </script>
 <style lang="scss" scoped>
 .Doc {

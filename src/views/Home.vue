@@ -23,20 +23,24 @@
 </template>
 
 <script lang="ts">
-import { inject } from "vue"
-import TopNav from "../components/Topnav.vue"
+import { inject } from "vue";
+import TopNav from "../components/Topnav.vue";
 export default {
   components: {
     TopNav,
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .Home {
   .topnavAndBanner {
     background: rgb(238, 174, 202);
-    background: radial-gradient(circle, rgb(242, 200, 218) 0%, rgba(148, 187, 233, 1) 100%);
+    background: radial-gradient(
+      circle,
+      rgb(242, 200, 218) 0%,
+      rgba(148, 187, 233, 1) 100%
+    );
     clip-path: ellipse(80% 60% at 50% 40%);
     .banner {
       text-align: center;

@@ -1,8 +1,9 @@
 <template>
   <button
+    class="Jv-ui"
     @click="toggle"
-    :class="{ checked: value }"
-    v-bind="$attr"
+    :class="{ 'Jv-ui-checked': value }"
+    v-bind="$attrs"
     :style="`transform: scale(${size}) `"
   >
     <span></span>
@@ -10,7 +11,6 @@
 </template>
 
 <script lang="ts">
-import { onBeforeUpdate } from "vue";
 // import { ref } from "vue";
 
 export default {
@@ -44,10 +44,10 @@ export default {
 };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
 $h: 23px;
 $h2: $h - 3px;
-button {
+.Jv-ui {
   position: relative;
   width: $h * 2;
   height: $h;
@@ -68,13 +68,13 @@ button {
     transition: left 250ms;
   }
 }
-.checked {
+.Jv-ui-checked {
   background-color: #2d8cf0;
 }
-.checked > span {
+.Jv-ui-checked > span {
   left: calc(100% - #{$h2} - 2px);
 }
-button:disabled {
+.Jv-ui:disabled {
   cursor: not-allowed;
 }
 </style>
