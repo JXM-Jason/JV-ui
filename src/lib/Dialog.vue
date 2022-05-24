@@ -1,16 +1,18 @@
 <template>
   <template v-if="visible">
-    <div class="Jv-ui-dialog-overlay"></div>
+    <div class="Jv-ui-dialog-overlay" @click="onClickOverlay"></div>
     <div class="Jv-ui-dialog-wrapper">
       <div class="Jv-ui-dialog">
-        <header>标题 <span class="Jv-ui-dialog-close"></span></header>
+        <header>
+          标题 <span class="Jv-ui-dialog-close" @click="Close"></span>
+        </header>
         <main>
           <p>第一行字</p>
           <p>第二行字</p>
         </main>
         <footer>
-          <Button themes="main">确认</Button>
-          <Button>取消</Button>
+          <Button themes="main" @click="OK">确认</Button>
+          <Button @click="Cancel">取消</Button>
         </footer>
       </div>
     </div>
@@ -25,6 +27,35 @@ export default {
       type: Boolean,
       default: false,
     },
+    closeOnClickOverlay: {
+      type: Boolean,
+      default: false,
+    },
+    Cancel: {
+      type: Function,
+    },
+    OK: {
+      type: Function,
+    },
+  },
+  setup(props, context) {
+    let Close = () => {
+      context.emit("update:value", !props.visible);
+    };
+    let OK = () => {
+      if (props.OK?.()!== false) {
+        Close();
+      }
+    };
+    let Cancel = () => {
+      Close();
+    };
+    let onClickOverlay =()=>{
+      if (props.closeOnClickOverlay) {
+        Close();
+      }
+    }
+    return { Close, Cancel, OK,onClickOverlay };
   },
 };
 </script>
@@ -57,7 +88,6 @@ export default {
     z-index: 10;
   }
   &-close {
-    border: 1px solid blue;
     width: 16px;
     height: 16px;
     cursor: pointer;
@@ -67,9 +97,9 @@ export default {
       position: absolute;
       height: 1px;
       background: black;
-      width: 100%;
-      top: 40%;
-      left: 50%;
+      width: 5%;
+      top: 12%;
+      left: 92.99999%;
     }
     &::before {
       transform: translate(-50%, -50%) rotate(-45deg);
@@ -104,3 +134,7 @@ export default {
 </style>
 
 
+
+function visible(visible: any) {
+  throw new Error('Function not implemented.');
+}

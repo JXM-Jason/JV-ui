@@ -4,15 +4,15 @@
     @click="toggle"
     :class="{ 'Jv-ui-checked': value }"
     v-bind="$attrs"
-    :style="`transform: scale(${size}) `"
+    :style="`transform: scale(${size}) ; --color:${color ? color : `#2d8cf0`}`"
   >
     <span></span>
+    <!-- --color:${color ? color : `#2d8cf0`} -->
   </button>
 </template>
 
 <script lang="ts">
-// import { ref } from "vue";
-
+import { computed, toRefs } from "vue";
 export default {
   props: ["value", "size", "color"],
   data() {
@@ -22,23 +22,24 @@ export default {
     };
   },
   setup(props, context) {
-    // const checked = ref(false)
-    // let toggle = () => {
-    //   checked.value = !checked.value
-    // }
-    let colorChange = "";
     let toggle = (e) => {
       context.emit("update:value", !props.value);
-      console.log(e.target);
-      console.log("props");
-      console.log(props.color);
-      console.log("context.attrs");
-      console.log(context.attrs);
+      // console.log(e.target);
+      // console.log("props");
+      // console.log(props.color);
+      // console.log("context.attrs");
+      // console.log(context.attrs);
     };
+    const { value, color } = toRefs(props);
+    // const calColor = computed(() => {
+    //   return color.value && value.value ? { backgroundColor: color.value } : {};
+    // });
 
     return {
-      // checked,
       toggle,
+      // calColor,
+      value,
+      color,
     };
   },
 };
@@ -47,6 +48,7 @@ export default {
 <style lang="scss">
 $h: 23px;
 $h2: $h - 3px;
+$color: #2d8cf0;
 .Jv-ui {
   position: relative;
   width: $h * 2;
@@ -69,7 +71,8 @@ $h2: $h - 3px;
   }
 }
 .Jv-ui-checked {
-  background-color: #2d8cf0;
+  background-color: var(--color);
+  // background-color: $color;
 }
 .Jv-ui-checked > span {
   left: calc(100% - #{$h2} - 2px);

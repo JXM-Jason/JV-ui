@@ -4,7 +4,7 @@
   </div>
   <div>
     <h3>对话框示例一</h3>
-    <Dialog :visible="x" />
+    <Dialog :visible="x" @update:value="x = $event" :closeOnClickOverlay="false" :OK="f1" :Cancel="f2"  />
   </div>
 </template>
 
@@ -19,7 +19,14 @@ export default {
     let toggle = () => {
       x.value = !x.value;
     };
-    return { x, toggle };
+    let f1 = () => {
+      console.log("f1");
+      return false;
+    };
+    let f2 = () => {
+      console.log("f2");
+    };
+    return { x, toggle, f1, f2 };
   },
 };
 </script>
