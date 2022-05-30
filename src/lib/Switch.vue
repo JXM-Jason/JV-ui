@@ -1,45 +1,30 @@
 <template>
   <button
     class="Jv-ui"
-    @click="toggle"
+    @click="toggle()"
     :class="{ 'Jv-ui-checked': value }"
     v-bind="$attrs"
-    :style="`transform: scale(${size}) ; --color:${color ? color : `#2d8cf0`}`"
+    :style="`transform:scale(${size});--color:${color ? color : '#2d8cf0'}`"
   >
     <span></span>
-    <!-- --color:${color ? color : `#2d8cf0`} -->
+    <!-- :style="[`transform: scale(${size});`, calColor]" -->
   </button>
 </template>
 
 <script lang="ts">
-import { computed, toRefs } from "vue";
+import { computed } from "vue";
 export default {
   props: ["value", "size", "color"],
-  data() {
-    return {
-      Attr: this.$attr,
-      Size: this.size,
-    };
-  },
   setup(props, context) {
-    let toggle = (e) => {
+    let toggle = () => {
       context.emit("update:value", !props.value);
-      // console.log(e.target);
-      // console.log("props");
-      // console.log(props.color);
-      // console.log("context.attrs");
-      // console.log(context.attrs);
     };
-    const { value, color } = toRefs(props);
-    // const calColor = computed(() => {
-    //   return color.value && value.value ? { backgroundColor: color.value } : {};
-    // });
-
+    const calColor = computed(() => {
+      return props.color && props.value ? { backgroundColor: props.color } : {};
+    });
     return {
       toggle,
-      // calColor,
-      value,
-      color,
+      calColor,
     };
   },
 };

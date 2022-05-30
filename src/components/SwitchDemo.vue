@@ -8,6 +8,8 @@
     <Switch v-model:value="defaultValue" disabled />
     //添加size属性,输入数字进行控制大小
     <Switch v-model:value="bool" size="0.8" />
+    //未添加颜色,采用默认颜色
+    <Switch v-model:value="bool" />
     //添加color来改变颜色
     <Switch v-model:value="bool" color="red" />
   </div>

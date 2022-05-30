@@ -1,21 +1,25 @@
 <template>
   <template v-if="visible">
-    <div class="Jv-ui-dialog-overlay" @click="onClickOverlay"></div>
-    <div class="Jv-ui-dialog-wrapper">
-      <div class="Jv-ui-dialog">
-        <header>
-          标题 <span class="Jv-ui-dialog-close" @click="Close"></span>
-        </header>
-        <main>
-          <p>第一行字</p>
-          <p>第二行字</p>
-        </main>
-        <footer>
-          <Button themes="main" @click="OK">确认</Button>
-          <Button @click="Cancel">取消</Button>
-        </footer>
+    <teleport to="body">
+      <div class="Jv-ui-dialog-overlay" @click="onClickOverlay"></div>
+      <div class="Jv-ui-dialog-wrapper">
+        <div class="Jv-ui-dialog">
+          <header>
+            <slot name="title"></slot>
+            <span class="Jv-ui-dialog-close" @click="Close"></span>
+          </header>
+          <main>
+            <slot name="content"></slot>
+          </main>
+          <footer>
+            <div>
+              <Button themes="main" @click="OK">确认</Button>
+              <Button @click="Cancel">取消</Button>
+            </div>
+          </footer>
+        </div>
       </div>
-    </div>
+    </teleport>
   </template>
 </template>
 <script lang="ts">
@@ -43,19 +47,20 @@ export default {
       context.emit("update:value", !props.visible);
     };
     let OK = () => {
-      if (props.OK?.()!== false) {
+      if (props.OK?.() !== false) {
         Close();
       }
     };
     let Cancel = () => {
+      props.Cancel?.();
       Close();
     };
-    let onClickOverlay =()=>{
+    let onClickOverlay = () => {
       if (props.closeOnClickOverlay) {
         Close();
       }
-    }
-    return { Close, Cancel, OK,onClickOverlay };
+    };
+    return { Close, Cancel, OK, onClickOverlay };
   },
 };
 </script>
@@ -120,21 +125,18 @@ export default {
     font-size: 14px;
     color: #606266;
     padding: 30px 20px;
+    white-space: pre-line;
+    text-overflow: ellipsis;
+    word-wrap: break-word;
   }
   > footer {
     padding: 10px 20px 20px;
     text-align: right;
     box-sizing: border-box;
-    > button {
-      position: relative;
-      top: 5px;
-    }
   }
 }
 </style>
 
 
 
-function visible(visible: any) {
-  throw new Error('Function not implemented.');
-}
+
