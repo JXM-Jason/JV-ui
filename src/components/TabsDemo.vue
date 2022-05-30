@@ -1,3 +1,15 @@
 <template>
-  <div>tabs</div>
+  <div>
+    <Tabs />
+  </div>
 </template>
+
+<script lang="ts">
+import Tabs from "../lib/Tabs.vue";
+export default {
+  components: { Tabs },
+};
+</script>
+
+<style lang="scss">
+</style>

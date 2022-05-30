@@ -17,7 +17,6 @@
       <template v-slot:content>
         <div>我是内容content</div>
       </template>
-      <template v-slot:footer> </template>
     </Dialog>
   </div>
   <div>
@@ -46,10 +45,18 @@ export default {
     let f2 = () => {
       console.log("f2");
     };
+
     let showDialog = () => {
       openDialog({
         title: h("strong", "警醒"),
         content: h("div", "像海绵一样，保持对外界事物的包容性持续学习"),
+        // OK() {
+        //   console.log("ok-确认");
+        //   return false;
+        // },
+        // Cancel() {
+        //   console.log("cancel-取消");
+        // },
         OK: () => {
           console.log("确认");
           return false;
@@ -63,8 +70,16 @@ export default {
     return { x, toggle, f1, f2, showDialog };
   },
 };
+
+function Cancel(): any {
+  throw new Error("Function not implemented.");
+}
 </script>
 
 <style lang="scss" >
 </style>
 
+
+function emit() {
+  throw new Error('Function not implemented.');
+}

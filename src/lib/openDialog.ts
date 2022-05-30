@@ -21,24 +21,12 @@ export  const openDialog=(options)=> {
                             close();
                         }
                     },
-                    // OK() {
-                    //     let flag = true
-                    //     if (typeof OK === 'function') {
-                    //         flag = OK() === false?false:true
-                    //     }
-                    //     // flag && this.visible = false
-                    //     console.log("okokokok");
-                    // },
-                    // Cancel() {
-                    //     this.visible = false
-                    //     console.log("cancancancnncnnan");
-                    // }
                     OK, Cancel,
                 },
                 {
                     title: () => { return title },
                     content: () => { return content },
-                    footer:()=> { return footer },
+                    footer: () => { return footer },
                 }
             );
         }
