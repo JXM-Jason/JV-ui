@@ -43,14 +43,11 @@ export default {
     height: 100vh;
     height: calc(100vh - 76px);
     > aside {
-      // border: 1px solid indigo;
-      background-color: lightblue;
       width: 150px;
       height: 100%;
+      box-shadow: 5px 0 5px rgb(51 51 51 / 10%);
     }
     > main {
-      // border: 1px solid indigo;
-      background-color: pink;
       width: 100%;
       // height: 117px;
       height: calc(100vh - 76px);

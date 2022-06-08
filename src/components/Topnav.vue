@@ -15,24 +15,24 @@
 </template>
 
 <script lang="ts">
-import { inject, Ref } from "vue"
+import { inject, Ref } from "vue";
 
 export default {
   setup() {
-    let asideView = inject<Ref<boolean>>("asideView")
+    let asideView = inject<Ref<boolean>>("asideView");
     const toggleAside = () => {
-      console.log("toggleAside")
+      console.log("toggleAside");
 
-      asideView.value = !asideView.value
-    }
-    return { toggleAside }
+      asideView.value = !asideView.value;
+    };
+    return { toggleAside };
   },
-}
+};
 </script>
 
 <style lang="scss" scoped>
 .TopNav {
-  // border: 1px solid pink;
+  box-shadow: 0 5px 5px rgb(51 51 51 / 10%);
   display: flex;
   flex-direction: row;
   justify-content: space-between;
