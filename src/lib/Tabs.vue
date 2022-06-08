@@ -1,5 +1,5 @@
 <template>
-  <div class="Jv-ui-Tabs">
+  <div class="Jv-ui-Tabs" ref="container">
     <div class="Jv-ui-activeBar" ref="indicator"></div>
     <div
       class="Jv-ui-Nav"
@@ -23,7 +23,7 @@
 
 <script lang="ts">
 import Tab from "../lib/Tab.vue";
-import { computed, onMounted, ref } from "vue";
+import { computed, onMounted, onUpdated, ref } from "vue";
 export default {
   props: {
     selected: {
@@ -36,6 +36,7 @@ export default {
     const TabArray = context.slots.default();
     const NavItems = ref<HTMLDivElement[]>([]);
     const indicator = ref<HTMLDivElement>();
+    const container = ref<HTMLDivElement>();
     TabArray.forEach((tag) => {
       if (tag.type !== Tab) {
         throw new Error("Tabs组件的子组件必须是Tab!");
@@ -50,23 +51,33 @@ export default {
         return item.props.name === props.selected;
       });
     });
-
-    onMounted(() => {
+    const x = () => {
       const divs = NavItems.value;
       const result = divs.filter((item) => {
         //得到有选中样式的div,之后将其宽度赋值给指示条
         return item.className === "Jv-ui-Nav selected";
       })[0];
       indicator.value.style.width = result.getBoundingClientRect().width + "px";
+      let left1 = result.getBoundingClientRect().left; //获取导航栏的left值
+      let left2 = container.value.getBoundingClientRect().left; //获取导航栏外层container的left值
+      let left = left1 - left2 + "px"; //得到差值
+      indicator.value.style.left = left; //将差值传给指示条
+    };
+
+    onMounted(() => {
+      x();
     });
-    return { TabArray, handleClick, TabFilter, NavItems, indicator };
+    onUpdated(() => {
+      x();
+    });
+    return { TabArray, handleClick, TabFilter, NavItems, indicator, container };
   },
 };
 </script>
 
 <style lang="scss">
 .Jv-ui-Tabs {
-  margin-top: 10px;
+  // margin-top: 10px;
   display: flex;
   position: relative;
   > div {
@@ -75,6 +86,9 @@ export default {
     line-height: 40px;
     padding: 0px 10px;
   }
+  .Jv-ui-Nav {
+    border: 1px solid green;
+  }
   .Jv-ui-activeBar {
     position: absolute;
     bottom: 0px;
@@ -82,13 +96,13 @@ export default {
     height: 2px;
     background-color: #409eff;
     border: 1px solid #409eff;
+    transition: all 250ms;
   }
   .selected {
     color: #409eff;
   }
 }
 .Jv-ui-TabContent {
-  // border: 1px solid yellow;
   margin-top: 10px;
   height: 50px;
   display: flex;
