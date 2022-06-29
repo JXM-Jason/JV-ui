@@ -5,6 +5,7 @@ import Switch from "../components/SwitchDemo.vue"
 import Button from "../components/ButtonDemo.vue"
 import Dialog from "../components/DialogDemo.vue"
 import Tabs from "../components/TabsDemo.vue"
+import Select from "../components/SelectDemo.vue"
 const routes = [
   { path: "/", component: Home },
   {
@@ -15,6 +16,7 @@ const routes = [
       { path: "/Doc/Button", component: Button },
       { path: "/Doc/Dialog", component: Dialog },
       { path: "/Doc/Tabs", component: Tabs },
+      { path: "/Doc/Select", component: Select },
     ],
   },
 ]

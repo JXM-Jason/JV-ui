@@ -5,7 +5,10 @@
       class="Jv-ui-Nav"
       v-for="(item, index) in TabArray"
       :key="item.props.name"
-      :class="{ selected: item.props.name === selected }"
+      :class="{
+        selected: item.props.name === selected,
+        disabled: item.props.disabled,
+      }"
       @click="handleClick"
       :ref="
         (el) => {
@@ -33,7 +36,7 @@ export default {
   },
 
   setup(props, context) {
-    const TabArray = context.slots.default();
+    let TabArray = context.slots.default();
     const NavItems = ref<HTMLDivElement[]>([]);
     const indicator = ref<HTMLDivElement>();
     const container = ref<HTMLDivElement>();
@@ -43,7 +46,11 @@ export default {
       }
     });
     const handleClick = (e) => {
-      context.emit("update:selected", e.target.__vnode.key);
+      if (e.target.className == "Jv-ui-Nav disabled") {
+        return;
+      } else {
+        context.emit("update:selected", e.target.__vnode.key);
+      }
     };
     const TabFilter = computed(() => {
       //过滤出符合当前选中状态的插槽内容
@@ -51,24 +58,24 @@ export default {
         return item.props.name === props.selected;
       });
     });
-    const x = () => {
+    const changeStyle = () => {
       const divs = NavItems.value;
       const result = divs.filter((item) => {
         //得到有选中样式的div,之后将其宽度赋值给指示条
         return item.className === "Jv-ui-Nav selected";
       })[0];
+
       indicator.value.style.width = result.getBoundingClientRect().width + "px";
-      let left1 = result.getBoundingClientRect().left; //获取导航栏的left值
-      let left2 = container.value.getBoundingClientRect().left; //获取导航栏外层container的left值
+      let { left: left1 } = result.getBoundingClientRect(); //获取导航栏的left值
+      let { left: left2 } = container.value.getBoundingClientRect(); //获取导航栏外层container的left值
       let left = left1 - left2 + "px"; //得到差值
       indicator.value.style.left = left; //将差值传给指示条
     };
-
     onMounted(() => {
-      x();
+      changeStyle();
     });
     onUpdated(() => {
-      x();
+      changeStyle();
     });
     return { TabArray, handleClick, TabFilter, NavItems, indicator, container };
   },
@@ -77,7 +84,8 @@ export default {
 
 <style lang="scss">
 .Jv-ui-Tabs {
-  // margin-top: 10px;
+  // margin-bottom: 10px;
+  border-bottom: 1px solid #e4e7ed;
   display: flex;
   position: relative;
   > div {
@@ -87,7 +95,7 @@ export default {
     padding: 0px 10px;
   }
   .Jv-ui-Nav {
-    border: 1px solid green;
+    // border: 1px solid green;
   }
   .Jv-ui-activeBar {
     position: absolute;
@@ -100,6 +108,10 @@ export default {
   }
   .selected {
     color: #409eff;
+  }
+  .disabled {
+    cursor: not-allowed;
+    color: #d6cccc;
   }
 }
 .Jv-ui-TabContent {

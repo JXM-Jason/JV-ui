@@ -9,6 +9,7 @@
           <li><router-link to="/Doc/Button">button组件</router-link></li>
           <li><router-link to="/Doc/Dialog">dialog组件</router-link></li>
           <li><router-link to="/Doc/Tabs">tabs组件</router-link></li>
+          <li><router-link to="/Doc/Select">Select组件</router-link></li>
         </ol>
       </aside>
       <main>
@@ -53,6 +54,7 @@ export default {
       height: calc(100vh - 76px);
       margin-left: 5px;
       overflow-y: scroll;
+      padding: 60px 80px;
     }
   }
 }
