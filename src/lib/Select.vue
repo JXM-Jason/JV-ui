@@ -4,21 +4,23 @@
     readonly="true"
     autocomplete="off"
     class="Jv-ui-form-control"
-    :placeholder="placeholder"
     @click="showOptions"
+    @blur="hideOptions"
+    :placeholder="selectItem"
   />
-  <span class="Jv-ui-arrow-reverse"></span>
-  <slot v-if="value"></slot>
+  <span class="Jv-ui-arrow-reverse" :class="{ isActive: value }"></span>
+  <options
+    :optionData="FilterData"
+    :visible="value"
+    @emitData="changePlaceholder"
+  ></options>
 </template>
 
-<script lang="ts">
+<script  lang="ts">
 import Options from "../lib/Options.vue";
+import { computed, ref } from "vue";
 export default {
   props: {
-    placeholder: {
-      type: String,
-      default: "请选择",
-    },
     value: {
       type: Boolean,
       default: false,
@@ -28,12 +30,40 @@ export default {
     Options,
   },
   setup(props, context) {
+    let placeholder = context.attrs.placeholder; //记录父组件传递的说明
+    let FilterData = [];
+    let selected = ref(null);
     let showOptions = () => {
-      console.log("props.value", props.value);
-
       context.emit("update:value", !props.value);
     };
-    return { showOptions };
+    let hideOptions = () => {
+      context.emit("update:value", false);
+    };
+    let slotsData = context.slots.default()[0].children;
+    for (let i = 0; i < slotsData.length; i++) {
+      FilterData.push(slotsData[i].props);
+    }
+    console.log("filter", FilterData);
+    //用于接受子组件传递过来的值
+    let changePlaceholder = (data) => {
+      selected.value = data;
+      return selected.value;
+    };
+
+    //计算属性来确定用户选的内容
+    let selectItem = computed(() => {
+      return selected.value ? selected.value : FilterData[0].label;
+    });
+
+    return {
+      showOptions,
+      hideOptions,
+      slotsData,
+      FilterData,
+      changePlaceholder,
+      placeholder,
+      selectItem,
+    };
   },
 };
 </script>
@@ -58,31 +88,21 @@ export default {
   display: inline-block;
   position: absolute;
   left: 430px;
-  top: 195px;
+  top: 198px;
   width: 8px;
   height: 8px;
   border-right: none;
   border-bottom: none;
   transform: rotate(-135deg);
+  transition: transform 200ms;
+}
+.isActive.Jv-ui-arrow-reverse {
+  transform: rotate(45deg);
+  transition: transform 200ms;
 }
 input[type="text"]:focus,
 select:focus {
   border: 1px solid #4988e7;
   outline: none;
-}
-
-.Jv-ui-select-dropdown {
-  // height: 230px;
-  transition: height 200ms;
-}
-.isActive .Jv-ui-select-dropdown {
-  height: 0px;
-  border: none;
-}
-.isActive .Jv-ui-arrow {
-  border-width: 10px;
-  // display: none;
-  border-color: transparent;
-  border: none;
 }
 </style>

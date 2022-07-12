@@ -1,7 +1,7 @@
 <template>
   <div>
     <h3>Select示列一</h3>
-    <Select v-model:value="bool" :placeholder="explain">
+    <Select v-model:value="bool" >
       <Options
         v-for="item in options"
         :key="item.value"
@@ -57,11 +57,9 @@ export default {
         label: "串根香",
       },
     ];
-    let explain = "你猜猜看";
     let bool = ref(false);
     return {
       options,
-      explain,
       bool,
     };
   },

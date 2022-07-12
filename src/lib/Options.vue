@@ -1,12 +1,19 @@
 <template>
-  <template>
+  <!-- v-if="visible" -->
+  <template v-if="visible">
     <teleport to="body">
-      <div>
+      <div class="Jv-ui-container">
         <div class="Jv-ui-arrow"></div>
         <div class="Jv-ui-select-dropdown">
           <ul class="Jv-ui-options">
-            <li class="Jv-ui-select-item">
-              {{ label }}
+            <li
+              class="Jv-ui-select-item"
+              v-for="item in optionData"
+              :key="item.key"
+              @mousedown="choose"
+              :class="{ select: emitItem == item.label ? true : false }"
+            >
+              {{ item.label }}
             </li>
           </ul>
         </div>
@@ -16,47 +23,36 @@
 </template>
 
 <script lang="ts">
+import { defineEmits, ref } from "vue";
 export default {
   props: {
-    label: {
-      type: String,
+    visible: {
+      type: Boolean,
+      default: false,
     },
-    value: {
-      type: String,
+    optionData: {
+      type: Object,
     },
   },
   setup(props, context) {
-    // console.log("props-label");
+    const emit = defineEmits(["emitData"]);
+    let emitItem = ref(props.optionData[0].label);
+    let choose = (e) => {
+      emitItem.value = e.target.innerText;
+      context.emit("emitData", emitItem.value);
+    };
 
-    // console.log(props.label);
-    // console.log("slots", context.slots);
-
-    return {};
+    return { choose, emit, emitItem };
   },
 };
 </script>
 
 <style lang="scss">
-.Jv-ui-option {
-  // border: 1px solid red;
-  // height: 200px;
-  // width: 200px;
+.Jv-ui-container {
+  position: absolute;
+  left: 220px;
+  top: 220px;
 }
-.Jv-ui-select-dropdown {
-  // height: 230px;
-  transition: height 200ms;
-}
-.isActive .Jv-ui-select-dropdown {
-  height: 0px;
-  border: none;
-}
-.isActive .Jv-ui-arrow {
-  border-width: 10px;
-  // display: none;
-  border-color: transparent;
-  border: none;
-}
-
 .Jv-ui-arrow {
   border-top: 10px solid transparent;
   border-left: 10px solid transparent;
@@ -81,12 +77,24 @@ export default {
     border-radius: 4px;
     overflow: scroll;
     margin-top: 10px;
+    // border: 1px solid pink;
     .Jv-ui-select-item {
-      padding: 0px 20px;
+      padding: 9px 20px;
+      // border: 1px solid blue;
+    }
+
+    .isChoose {
+      font-weight: bold;
+      color: #409eff;
     }
     .Jv-ui-select-item:hover {
       background-color: #f5f7fa;
     }
   }
+}
+.select {
+  background-color: #f5f7fa;
+  color: #409eff;
+  font-weight: bold;
 }
 </style>
