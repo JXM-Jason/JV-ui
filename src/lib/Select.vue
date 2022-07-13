@@ -1,19 +1,24 @@
 <template>
-  <input
-    type="text"
-    readonly="true"
-    autocomplete="off"
-    class="Jv-ui-form-control"
-    @click="showOptions"
-    @blur="hideOptions"
-    :placeholder="selectItem"
-  />
-  <span class="Jv-ui-arrow-reverse" :class="{ isActive: value }"></span>
-  <options
-    :optionData="FilterData"
-    :visible="value"
-    @emitData="changePlaceholder"
-  ></options>
+  <div class="whole">
+    <input
+      type="text"
+      readonly="true"
+      autocomplete="off"
+      class="Jv-ui-form-control"
+      v-bind="$attrs"
+      @click="showOptions"
+      @blur="hideOptions"
+      :placeholder="selectItem"
+    />
+    <span class="Jv-ui-arrow-reverse" :class="{ isActive: value }"></span>
+    <options
+      :optionData="FilterData"
+      :visible="value"
+      @emitData="changePlaceholder"
+      :left="resultX"
+      :top="resultY"
+    ></options>
+  </div>
 </template>
 
 <script  lang="ts">
@@ -33,13 +38,22 @@ export default {
     let placeholder = context.attrs.placeholder; //记录父组件传递的说明
     let FilterData = [];
     let selected = ref(null);
-    let showOptions = () => {
+    let resultX = ref(null); //最后的X
+    let resultY = ref(null); //最后的Y
+    let showOptions = (e) => {
+      let clientX = e.clientX;
+      let clientY = e.clientY;
+      let offsetX = e.offsetX;
+      let offsetY = e.offsetY;
+      resultX.value = clientX - offsetX;
+      resultY.value = 40 - offsetY + clientY;
       context.emit("update:value", !props.value);
     };
     let hideOptions = () => {
       context.emit("update:value", false);
     };
     let slotsData = context.slots.default()[0].children;
+
     for (let i = 0; i < slotsData.length; i++) {
       FilterData.push(slotsData[i].props);
     }
@@ -63,18 +77,23 @@ export default {
       changePlaceholder,
       placeholder,
       selectItem,
+      resultX,
+      resultY,
     };
   },
 };
 </script>
 
 <style lang="scss">
+.whole {
+  position: relative;
+}
 .Jv-ui-form-control {
   position: relative;
   border: 1px solid #c0c4cc;
   width: 240px;
   height: 40px;
-  padding: 0px 30px 0px 10px !important;
+  padding: 0px 30px 0px 15px !important;
   text-align: left;
   line-height: 38px;
   color: #c0c4cc;
@@ -83,12 +102,16 @@ export default {
 .Jv-ui-form-control:hover {
   cursor: pointer;
 }
+.Jv-ui-form-control:disabled {
+  background-color: #f5f7fa;
+  cursor: not-allowed;
+}
 .Jv-ui-arrow-reverse {
   border: 1px solid #c0c4cc;
   display: inline-block;
   position: absolute;
-  left: 430px;
-  top: 198px;
+  left: 220px;
+  top: 15px;
   width: 8px;
   height: 8px;
   border-right: none;

@@ -1,12 +1,43 @@
 <template>
   <div>
     <h3>Select示列一</h3>
-    <Select v-model:value="bool" >
+    基础用法
+    <Select v-model:value="bool">
       <Options
         v-for="item in options"
         :key="item.value"
         :label="item.label"
         :value="item.value"
+      >
+      </Options>
+    </Select>
+  </div>
+
+  <div style="margin-top: 50px">
+    <h3>Select示列二</h3>
+    有禁用选项
+    <Select v-model:value="bool1">
+      <Options
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+        :disabled="item.disabled"
+      >
+      </Options>
+    </Select>
+  </div>
+
+  <div style="margin-top: 50px">
+    <h3>Select示列三</h3>
+    禁用状态
+    <Select v-model:value="bool2" disabled>
+      <Options
+        v-for="item in options"
+        :key="item.value"
+        :label="item.label"
+        :value="item.value"
+        :disabled="item.disabled"
       >
       </Options>
     </Select>
@@ -31,6 +62,7 @@ export default {
       {
         value: "选项2",
         label: "双皮奶",
+        disabled: true,
       },
       {
         value: "选项3",
@@ -58,9 +90,13 @@ export default {
       },
     ];
     let bool = ref(false);
+    let bool1 = ref(false);
+    let bool2 = ref(false);
     return {
       options,
       bool,
+      bool1,
+      bool2,
     };
   },
 };

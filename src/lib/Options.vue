@@ -2,7 +2,10 @@
   <!-- v-if="visible" -->
   <template v-if="visible">
     <teleport to="body">
-      <div class="Jv-ui-container">
+      <div
+        class="Jv-ui-container"
+        :style="{ left: left + 11 + 'px', top: top + 'px' }"
+      >
         <div class="Jv-ui-arrow"></div>
         <div class="Jv-ui-select-dropdown">
           <ul class="Jv-ui-options">
@@ -11,7 +14,10 @@
               v-for="item in optionData"
               :key="item.key"
               @mousedown="choose"
-              :class="{ select: emitItem == item.label ? true : false }"
+              :class="{
+                select: emitItem == item.label ? true : false,
+                disabled: item.disabled,
+              }"
             >
               {{ item.label }}
             </li>
@@ -33,13 +39,29 @@ export default {
     optionData: {
       type: Object,
     },
+    left: {
+      //动态获取下拉框位置
+      type: Number,
+    },
+    top: {
+      //动态获取下拉框位置
+      type: Number,
+    },
   },
   setup(props, context) {
     const emit = defineEmits(["emitData"]);
     let emitItem = ref(props.optionData[0].label);
+    console.log("props.optionData", props.optionData);
+
     let choose = (e) => {
-      emitItem.value = e.target.innerText;
-      context.emit("emitData", emitItem.value);
+      console.log("e---e", e);
+
+      if (e.target.className == "Jv-ui-select-item disabled") {
+        return;
+      } else {
+        emitItem.value = e.target.innerText;
+        context.emit("emitData", emitItem.value);
+      }
     };
 
     return { choose, emit, emitItem };
@@ -50,8 +72,6 @@ export default {
 <style lang="scss">
 .Jv-ui-container {
   position: absolute;
-  left: 220px;
-  top: 220px;
 }
 .Jv-ui-arrow {
   border-top: 10px solid transparent;
@@ -70,6 +90,7 @@ export default {
   box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
   border: 1px solid #e4e7ed;
   border-radius: 4px;
+  background-color: white;
   .Jv-ui-options {
     width: 234px;
     height: 218px;
@@ -80,6 +101,7 @@ export default {
     // border: 1px solid pink;
     .Jv-ui-select-item {
       padding: 9px 20px;
+      // padding: 9px 20px 9px 20px;
       // border: 1px solid blue;
     }
 
@@ -89,6 +111,7 @@ export default {
     }
     .Jv-ui-select-item:hover {
       background-color: #f5f7fa;
+      cursor: pointer;
     }
   }
 }
@@ -96,5 +119,10 @@ export default {
   background-color: #f5f7fa;
   color: #409eff;
   font-weight: bold;
+}
+.disabled {
+  color: #c0c4cc;
+  cursor: not-allowed !important;
+  // background-color: white !important;
 }
 </style>
