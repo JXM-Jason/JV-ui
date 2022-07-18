@@ -8,12 +8,12 @@
       >
         <div class="Jv-ui-arrow"></div>
         <div class="Jv-ui-select-dropdown">
-          <ul class="Jv-ui-options">
+          <ul class="Jv-ui-options" @scroll="ListScroll" id="ulDom">
             <li
               class="Jv-ui-select-item"
               v-for="item in optionData"
               :key="item.key"
-              @mousedown="choose"
+              @mousedown="choose($event)"
               :class="{
                 select: emitItem == item.label ? true : false,
                 disabled: item.disabled,
@@ -29,7 +29,7 @@
 </template>
 
 <script lang="ts">
-import { defineEmits, ref } from "vue";
+import { defineEmits, onUpdated, ref } from "vue";
 export default {
   props: {
     visible: {
@@ -51,20 +51,30 @@ export default {
   setup(props, context) {
     const emit = defineEmits(["emitData"]);
     let emitItem = ref(props.optionData[0].label);
-    console.log("props.optionData", props.optionData);
-
-    let choose = (e) => {
-      console.log("e---e", e);
-
-      if (e.target.className == "Jv-ui-select-item disabled") {
+    let moveTop = ref(null);
+    let choose = function ($event) {
+      if ($event.target.className == "Jv-ui-select-item disabled") {
         return;
       } else {
-        emitItem.value = e.target.innerText;
+        emitItem.value = $event.target.innerText;
         context.emit("emitData", emitItem.value);
       }
     };
 
-    return { choose, emit, emitItem };
+    onUpdated(() => {
+      if (props.visible) {
+        //显示下拉框时设置scrollTop的数值
+        let dom = document.querySelector("#ulDom");
+        dom.scrollTop = moveTop.value;
+      } else {
+        return;
+      }
+    });
+    let ListScroll = (e) => {
+      //记录最后滚动高
+      moveTop.value = e.target.scrollTop;
+    };
+    return { choose, emit, emitItem, moveTop, ListScroll };
   },
 };
 </script>
@@ -84,6 +94,7 @@ export default {
   left: 10px;
 }
 .Jv-ui-select-dropdown {
+  position: relative;
   width: 218px;
   height: 210px;
   overflow: hidden;
@@ -92,22 +103,17 @@ export default {
   border-radius: 4px;
   background-color: white;
   .Jv-ui-options {
+    position: absolute;
     width: 234px;
     height: 218px;
     color: #607996;
     border-radius: 4px;
     overflow: scroll;
-    margin-top: 10px;
-    // border: 1px solid pink;
+    // margin-top: 10px;
+    top: 5px;
     .Jv-ui-select-item {
+      height: 40px;
       padding: 9px 20px;
-      // padding: 9px 20px 9px 20px;
-      // border: 1px solid blue;
-    }
-
-    .isChoose {
-      font-weight: bold;
-      color: #409eff;
     }
     .Jv-ui-select-item:hover {
       background-color: #f5f7fa;
@@ -123,6 +129,6 @@ export default {
 .disabled {
   color: #c0c4cc;
   cursor: not-allowed !important;
-  // background-color: white !important;
+  background-color: white !important;
 }
 </style>

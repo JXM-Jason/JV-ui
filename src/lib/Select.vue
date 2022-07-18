@@ -35,7 +35,6 @@ export default {
     Options,
   },
   setup(props, context) {
-    let placeholder = context.attrs.placeholder; //记录父组件传递的说明
     let FilterData = [];
     let selected = ref(null);
     let resultX = ref(null); //最后的X
@@ -53,7 +52,6 @@ export default {
       context.emit("update:value", false);
     };
     let slotsData = context.slots.default()[0].children;
-
     for (let i = 0; i < slotsData.length; i++) {
       FilterData.push(slotsData[i].props);
     }
@@ -75,7 +73,6 @@ export default {
       slotsData,
       FilterData,
       changePlaceholder,
-      placeholder,
       selectItem,
       resultX,
       resultY,
