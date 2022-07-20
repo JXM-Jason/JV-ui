@@ -1,6 +1,6 @@
 <template>
   <div class="Jv-ui-Message">
-    <Button>点击打开消息width</Button>
+    <Button>打开消息</Button>
   </div>
 </template>
 

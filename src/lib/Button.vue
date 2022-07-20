@@ -3,10 +3,10 @@
     class="Jv-ui-button"
     :class="{ [`Jv-ui-${themes}`]: themes }"
     :disabled="disabled"
-    :style="[borderRadius, Size]"
+    :style="[borderRadius]"
   >
     <span v-if="Loading" class="Jv-ui-loadingIndicator"></span>
-    <slot />
+    <span class="JV-ui-text"><slot></slot></span>
   </button>
 </template>
 
@@ -16,7 +16,6 @@ export default {
   data() {
     return {
       borderRadius: "border-radius:" + this.round + "px",
-      Size: "width:" + this.Width + "px" + ";" + "height:" + this.Height + "px",
     };
   },
   props: {
@@ -32,14 +31,6 @@ export default {
       type: Number,
       default: 10,
     },
-    Width: {
-      type: Number,
-      default: 98,
-    },
-    Height: {
-      type: Number,
-      default: 40,
-    },
     Loading: {
       type: Boolean,
       default: false,
@@ -51,16 +42,22 @@ export default {
 
 <style lang="scss">
 button.Jv-ui-button {
+  display: inline-block;
   font-size: 14px;
   text-align: center;
-  padding: 0px 12px;
+  padding: 12px 20px;
   border: 1px solid #dcdfe6;
   background: white;
   color: #313234;
-  margin-left: 10px;
+  // margin-left: 10px;
   white-space: nowrap;
   line-height: 0px;
   cursor: pointer;
+  -webkit-appearance: none;
+  .JV-ui-text {
+    display: inline-block;
+    margin: 7px 0px;
+  }
   &.Jv-ui-button:hover {
     background: #ecf5ff;
     color: #409eff;

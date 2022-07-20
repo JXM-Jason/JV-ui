@@ -28,13 +28,8 @@
     </div>
     <div>
       <h3>示例六</h3>
-      <p>传入宽高和round的按钮</p>
-      <Button :round="40" :Height="50" :Width="50"> size</Button>
-    </div>
-    <div>
-      <h3>示例七</h3>
       <p>传入loading的按钮</p>
-      <Button :Width="130" :Loading="true">loading加载中</Button>
+      <Button :Loading="true">loading加载中</Button>
     </div>
   </div>
 </template>
