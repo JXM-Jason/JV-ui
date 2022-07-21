@@ -68,7 +68,7 @@ export default {
     .Nav {
       :deep(.toggleAside) {
         border: 10px solid black;
-        display: none !important;
+        display: none;
       }
     }
   }

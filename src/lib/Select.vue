@@ -90,7 +90,7 @@ export default {
   border: 1px solid #c0c4cc;
   width: 240px;
   height: 40px;
-  padding: 0px 30px 0px 15px !important;
+  padding: 0px 30px 0px 15px;
   text-align: left;
   line-height: 38px;
   color: #c0c4cc;
