@@ -8,26 +8,41 @@
     </div>
     <div>
       <h3>示例二</h3>
+      <p>主要按钮</p>
+      <Button themes="main"> 主要按钮</Button>
+    </div>
+    <div>
+      <h3>示例三</h3>
       <p>传入themes主题为danger的按钮</p>
       <Button themes="danger"> 危险按钮</Button>
     </div>
     <div>
-      <h3>示例三</h3>
+      <h3>示例四</h3>
       <p>传入themes主题为success的按钮</p>
       <Button themes="success"> 成功按钮</Button>
     </div>
     <div>
-      <h3>示例四</h3>
+      <h3>示例五</h3>
+      <p>传入themes主题为info的按钮</p>
+      <Button themes="info"> 成功按钮</Button>
+    </div>
+    <div>
+      <h3>示例六</h3>
+      <p>传入themes主题为warning的按钮</p>
+      <Button themes="warning"> 成功按钮</Button>
+    </div>
+    <div>
+      <h3>示例七</h3>
       <p>传入disabled属性的按钮</p>
       <Button disabled> 禁止按钮</Button>
     </div>
     <div>
-      <h3>示例五</h3>
+      <h3>示例八</h3>
       <p>传入round圆角边框的按钮</p>
       <Button :round="40"> 圆角按钮</Button>
     </div>
     <div>
-      <h3>示例六</h3>
+      <h3>示例九</h3>
       <p>传入loading的按钮</p>
       <Button :Loading="true">loading加载中</Button>
     </div>

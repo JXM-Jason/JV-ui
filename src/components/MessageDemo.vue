@@ -1,16 +1,24 @@
 <template>
   <div>
-    <Message></Message>
+    <Button @click="showMessage">打开消息</Button>
   </div>
 </template>
 
 <script>
-import Message from "../lib/Message.vue";
+import Button from "../lib/Button.vue";
+import { ref } from "vue";
 export default {
   components: {
-    Message,
+    Button,
   },
-  setup() {},
+  setup() {
+    let bool = ref(false);
+    let showMessage = () => {
+      console.log("点击了");
+      bool.value = true;
+    };
+    return { showMessage, bool };
+  },
 };
 </script>
 

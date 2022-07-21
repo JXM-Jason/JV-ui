@@ -12,9 +12,9 @@
             <slot name="content"></slot>
           </main>
           <footer>
-            <div>
-              <Button themes="main" @click="OK">确认</Button>
-              <Button @click="Cancel">取消</Button>
+            <div class="Jv-ui-footer">
+              <Button themes="main" @click="OK">确&nbsp;&nbsp;认</Button>
+              <Button @click="Cancel">取&nbsp;&nbsp;消</Button>
             </div>
           </footer>
         </div>
@@ -133,6 +133,11 @@ export default {
     padding: 10px 20px 20px;
     text-align: right;
     box-sizing: border-box;
+    .Jv-ui-footer {
+      display: flex;
+      column-gap: 20px;
+      justify-content: end;
+    }
   }
 }
 </style>

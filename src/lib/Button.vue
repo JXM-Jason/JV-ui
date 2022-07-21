@@ -21,7 +21,7 @@ export default {
   props: {
     themes: {
       type: String,
-      default: "button",
+      // default: "button",
     },
     disabled: {
       type: Boolean,
@@ -29,7 +29,7 @@ export default {
     },
     round: {
       type: Number,
-      default: 10,
+      default: 4,
     },
     Loading: {
       type: Boolean,
@@ -59,49 +59,58 @@ button.Jv-ui-button {
     margin: 7px 0px;
   }
   &.Jv-ui-button:hover {
-    background: #ecf5ff;
     color: #409eff;
     border: 1px solid #409eff;
   }
   &.Jv-ui-main {
-    color: white;
-    background: #409eff;
+    border: 1px solid #b3d8ff;
+    color: #409eff;
+    background: #ecf5ff;
   }
   &.Jv-ui-danger {
-    color: white;
-    background: #f56c6c;
+    border: 1px solid #fbc4c4;
+    color: #f56c6c;
+    background: #fef0f0;
   }
   &.Jv-ui-success {
-    color: white;
-    background: #67c23a;
+    border: 1px solid #c2e7b0;
+    color: #67c23a;
+    background: #f0f9eb;
   }
   &.Jv-ui-info {
-    color: white;
-    background: #909399;
+    border: 1px solid #d3d4d6;
+    color: #909399;
+    background: #f4f4f5;
   }
   &.Jv-ui-warning {
-    color: white;
-    background: #e6a23c;
+    border: 1px solid #f5dab1;
+    color: #e6a23c;
+    background: #fdf6ec;
   }
   &.Jv-ui-main:hover {
     color: white;
     background: #66b1ff;
+    border: 1px solid transparent;
   }
   &.Jv-ui-danger:hover {
     color: white;
     background: #f78989;
+    border: 1px solid transparent;
   }
   &.Jv-ui-success:hover {
     color: white;
     background: #85ce61;
+    border: 1px solid transparent;
   }
   &.Jv-ui-info:hover {
     color: white;
     background: #a6a9ad;
+    border: 1px solid transparent;
   }
   &.Jv-ui-warning:hover {
     color: white;
     background: #ebb563;
+    border: 1px solid transparent;
   }
 
   & > .Jv-ui-loadingIndicator {
@@ -120,6 +129,40 @@ button.Jv-ui-button {
   &[disabled] {
     cursor: not-allowed;
     color: gray;
+  }
+  &[disabled]:hover {
+    cursor: not-allowed;
+    color: gray;
+    border: 1px solid #dcdfe6;
+  }
+  &:focus {
+    color: #409eff;
+    border: 1px solid #409eff;
+  }
+  &.Jv-ui-main:focus {
+    color: white;
+    background: #66b1ff;
+    border: 1px solid transparent;
+  }
+  &.Jv-ui-danger:focus {
+    color: white;
+    background: #f78989;
+    border: 1px solid transparent;
+  }
+  &.Jv-ui-success:focus {
+    color: white;
+    background: #85ce61;
+    border: 1px solid transparent;
+  }
+  &.Jv-ui-info:focus {
+    color: white;
+    background: #a6a9ad;
+    border: 1px solid transparent;
+  }
+  &.Jv-ui-warning:focus {
+    color: white;
+    background: #ebb563;
+    border: 1px solid transparent;
   }
 }
 @keyframes IndicatorSpin {

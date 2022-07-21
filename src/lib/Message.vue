@@ -1,7 +1,5 @@
 <template>
-  <div class="Jv-ui-Message">
-    <Button>打开消息</Button>
-  </div>
+  <div class="Jv-ui-Message"></div>
 </template>
 
 <script lang="ts">
@@ -14,8 +12,8 @@ export default {
 </script>
 <style lang="scss">
 .Jv-ui-Message {
-  width: 1000px;
-  height: 500px;
+  width: 380px;
+  height: 48px;
   border: 1px solid red;
 }
 </style>
