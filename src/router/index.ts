@@ -6,7 +6,7 @@ import Button from "../components/ButtonDemo.vue"
 import Dialog from "../components/DialogDemo.vue"
 import Tabs from "../components/TabsDemo.vue"
 import Select from "../components/SelectDemo.vue"
-import Message from "../components/MessageDemo.vue"
+import Notification from "../components/NotificationDemo.vue"
 const routes = [
   { path: "/", component: Home },
   {
@@ -18,7 +18,7 @@ const routes = [
       { path: "/Doc/Dialog", component: Dialog },
       { path: "/Doc/Tabs", component: Tabs },
       { path: "/Doc/Select", component: Select },
-      {path: "/Doc/Message", component: Message },
+      {path: "/Doc/Notification", component: Notification },
     ],
   },
 ]

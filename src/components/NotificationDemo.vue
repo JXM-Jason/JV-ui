@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Button @click="showMessage">打开消息</Button>
+    <Button @click="showNotification">打开消息</Button>
   </div>
 </template>
 
@@ -13,11 +13,11 @@ export default {
   },
   setup() {
     let bool = ref(false);
-    let showMessage = () => {
+    let showNotification = () => {
       console.log("点击了");
       bool.value = true;
     };
-    return { showMessage, bool };
+    return { showNotification, bool };
   },
 };
 </script>

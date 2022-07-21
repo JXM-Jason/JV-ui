@@ -1,5 +1,5 @@
 import { createApp, h } from "vue";
-import Message from "../lib/Message.vue"
+import Notification from "../lib/Notification.vue"
 
 
 export const openMessage = () => {

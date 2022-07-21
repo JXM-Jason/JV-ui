@@ -10,7 +10,9 @@
           <li><router-link to="/Doc/Dialog">dialog组件</router-link></li>
           <li><router-link to="/Doc/Tabs">tabs组件</router-link></li>
           <li><router-link to="/Doc/Select">Select组件</router-link></li>
-          <li><router-link to="/Doc/Message">Message组件</router-link></li>
+          <li>
+            <router-link to="/Doc/Notification">Notification组件</router-link>
+          </li>
         </ol>
       </aside>
       <main>

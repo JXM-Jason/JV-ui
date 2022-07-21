@@ -1,5 +1,5 @@
 <template>
-  <div class="Jv-ui-Message"></div>
+  <div class="Jv-ui-Notification"></div>
 </template>
 
 <script lang="ts">
@@ -11,7 +11,7 @@ export default {
 };
 </script>
 <style lang="scss">
-.Jv-ui-Message {
+.Jv-ui-Notification {
   width: 380px;
   height: 48px;
   border: 1px solid red;
