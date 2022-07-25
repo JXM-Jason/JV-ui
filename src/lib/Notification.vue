@@ -1,13 +1,26 @@
 <template>
-  <div role="alert" class="Jv-ui-Notification">
-    <div class="Jv-ui-Notification-group">
-      <h2 class="Jv-ui-Notification-title">提示</h2>
-      <div class="Jv-ui-Notification-content">
-        <p>Notification</p>
+  <template v-if="visible">
+    <teleport to="body">
+      <div
+        role="alert"
+        class="Jv-ui-Notification"
+        style="top: 16px"
+        v-bind="$attrs"
+      >
+        <div class="Jv-ui-Notification-group">
+          <slot name="title">
+            <h2 class="Jv-ui-Notification-title">提示</h2>
+          </slot>
+          <slot name="message">
+            <div class="Jv-ui-Notification-content">
+              <p>Notification</p>
+            </div>
+          </slot>
+          <div class="Jv-ui-Notification-close" @click="Close"></div>
+        </div>
       </div>
-      <div class="Jv-ui-Notification-close"></div>
-    </div>
-  </div>
+    </teleport>
+  </template>
 </template>
 
 <script lang="ts">
@@ -16,11 +29,24 @@ export default {
   components: {
     Button,
   },
+  props: {
+    visible: {
+      type: Boolean,
+      default: false,
+    },
+  },
+  setup(props, context) {
+    let Close = () => {
+      context.emit("update:value", !props.visible);
+      // console.log("关闭");
+    };
+    let num = 1;
+    return { Close, num };
+  },
 };
 </script>
 <style lang="scss">
 .Jv-ui-Notification {
-  height: 88px;
   display: flex;
   flex-direction: column;
   width: 330px;
@@ -30,16 +56,37 @@ export default {
   border: 1px solid #ebeef5;
   position: fixed;
   background-color: #fff;
-  transition: opacity 0.3s, transform 0.3s, left 0.3s, right 0.3s, top 0.4s,
-    bottom 0.3s;
+  box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
   overflow: hidden;
+  &.right {
+    right: 16px;
+    animation: move-right 0.3s ease-out;
+  }
+  &.left {
+    left: 16px;
+    animation: move-left 0.3s ease-out;
+  }
+  @keyframes move-right {
+    0% {
+      transform: translateX(105%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
+  @keyframes move-left {
+    0% {
+      transform: translateX(-105%);
+    }
+    100% {
+      transform: translateX(0%);
+    }
+  }
   &-group {
     margin-left: 13px;
     margin-right: 8px;
-    border: 1px solid yellow;
   }
   &-title {
-    border: 1px solid pink;
     font-weight: 700;
     font-size: 16px;
     color: #303133;
@@ -51,13 +98,12 @@ export default {
     margin: 6px 0 0;
     color: #606266;
     text-align: justify;
-    border: 1px solid blue;
+    overflow: hidden;
   }
   &-close {
     position: absolute;
     top: 15px;
     left: 300px;
-    border: 1px solid red;
     width: 16px;
     height: 16px;
     cursor: pointer;
