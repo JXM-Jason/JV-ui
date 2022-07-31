@@ -38,10 +38,8 @@ export default {
   setup(props, context) {
     let Close = () => {
       context.emit("update:value", !props.visible);
-      // console.log("关闭");
     };
-    let num = 1;
-    return { Close, num };
+    return { Close };
   },
 };
 </script>
@@ -58,6 +56,7 @@ export default {
   background-color: #fff;
   box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
   overflow: hidden;
+  z-index: 9;
   &.right {
     right: 16px;
     animation: move-right 0.3s ease-out;

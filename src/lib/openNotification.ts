@@ -1,7 +1,6 @@
 import { createApp, h } from "vue";
 import Notification from "../lib/Notification.vue"
 
-
 export const openMessage = (options) => {
     const { title, message, duration, position } = options;
     const div = document.createElement('body');
@@ -12,7 +11,6 @@ export const openMessage = (options) => {
     const close = () => {
         app.unmount();
     }
-
     function calClass(position) {
         if (!!position) {//传了值
             if (position == 'top-left' ||position == 'bottom-left') {
@@ -47,7 +45,6 @@ export const openMessage = (options) => {
                     visible: true,
                     "onUpdate:value"(newValue) {
                         if (newValue === false) {
-                            console.log("儿豁");
                             close();
                         }
                     },

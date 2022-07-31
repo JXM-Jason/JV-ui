@@ -55,7 +55,6 @@ export default {
     for (let i = 0; i < slotsData.length; i++) {
       FilterData.push(slotsData[i].props);
     }
-    console.log("filter", FilterData);
     //用于接受子组件传递过来的值
     let changePlaceholder = (data) => {
       selected.value = data;
