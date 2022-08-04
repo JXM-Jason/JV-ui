@@ -13,6 +13,9 @@
           <li>
             <router-link to="/Doc/Notification">Notification组件</router-link>
           </li>
+          <li>
+            <router-link to="/Doc/Drawer">Drawer组件</router-link>
+          </li>
         </ol>
       </aside>
       <main>

@@ -7,6 +7,7 @@ import Dialog from "../components/DialogDemo.vue"
 import Tabs from "../components/TabsDemo.vue"
 import Select from "../components/SelectDemo.vue"
 import Notification from "../components/NotificationDemo.vue"
+import Drawer from "../components/DrawerDemo.vue"
 const routes = [
   { path: "/", component: Home },
   {
@@ -18,7 +19,8 @@ const routes = [
       { path: "/Doc/Dialog", component: Dialog },
       { path: "/Doc/Tabs", component: Tabs },
       { path: "/Doc/Select", component: Select },
-      {path: "/Doc/Notification", component: Notification },
+      { path: "/Doc/Notification", component: Notification },
+      {path: "/Doc/Drawer",component: Drawer}
     ],
   },
 ]
