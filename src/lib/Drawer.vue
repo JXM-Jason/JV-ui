@@ -6,11 +6,11 @@
           role="document"
           tabindex="-1"
           class="Jv-ui-Drawer-container"
-          @click.self="Close"
+          @click.self="beforeClose ? beforeClose() : Close()"
         >
           <div
             aria-modal="true"
-            style="width: 30%"
+            :style="getStyle(direction)"
             class="Jv-ui-Drawer"
             :class="{
               right: direction == 'right',
@@ -19,9 +19,8 @@
               bottom: direction == 'bottom',
             }"
           >
-            <header class="Jv-ui-Drawer-header">
+            <header class="Jv-ui-Drawer-header" v-show="withHeader">
               <slot name="header"> <span>我是头部</span></slot>
-              <span class="Jv-ui-Drawer-close" @click="Close"></span>
             </header>
             <section class="Jv-ui-Drawer-body">
               <slot name="body"> <span>我是身体</span></slot>
@@ -34,8 +33,7 @@
 </template>
 
 <script lang="ts">
-import { openDialog } from "../lib/openDialog";
-import { h } from "vue";
+import { onUpdated } from "vue";
 export default {
   props: {
     direction: {
@@ -46,26 +44,40 @@ export default {
       type: Boolean,
       default: false,
     },
+    withHeader: {
+      type: Boolean,
+      default: true,
+    },
+    beforeClose: {
+      type: Function,
+    },
   },
   setup(props, context) {
     let Close = () => {
-      openDialog({
-        title: h("strong", "确认关闭"),
-        content: h("div", "你确定要关闭当前窗口？"),
-        OK: () => {
-          context.emit("update:visible", !props.visible);
-          return true;
-        },
-        Cancel: () => {},
-      });
+      context.emit("update:visible", !props.visible);
     };
-    return { Close };
+    let getStyle = (position) => {
+      switch (position) {
+        case "right":
+          return { width: "30%" };
+          break;
+        case "left":
+          return { width: "30%" };
+          break;
+        case "top":
+          return { width: "100%", height: "30%" };
+          break;
+        case "bottom":
+          return { width: "100%", height: "30%" };
+      }
+    };
+    return { Close, getStyle };
   },
 };
 </script>
 
 
-<style lang="scss">
+<style lang="scss" >
 .Jv-ui-Drawer {
   &-wrapper {
     position: fixed;
@@ -76,7 +88,6 @@ export default {
     overflow: hidden;
     margin: 0;
     z-index: 9;
-    display: var(--display);
   }
   &-container {
     position: relative;
@@ -96,27 +107,6 @@ export default {
     padding: 20px 20px 0;
     > :first-child {
       flex: 1;
-    }
-  }
-  &-close {
-    width: 16px;
-    height: 16px;
-    cursor: pointer;
-    &::before,
-    &::after {
-      content: "";
-      position: absolute;
-      height: 1px;
-      background: #898c90;
-      width: 6%;
-      top: 4.2%;
-      left: 90.3%;
-    }
-    &::before {
-      transform: translate(-50%, -50%) rotate(-45deg);
-    }
-    &::after {
-      transform: translate(-50%, -50%) rotate(45deg);
     }
   }
   &-body {
@@ -139,33 +129,24 @@ export default {
     top: 0;
     bottom: 0;
   }
-  @keyframes move-right1 {
-    0% {
-      right: -288px;
-    }
-    100% {
-      right: 0px;
-    }
+  &.left {
+    left: 0;
+    height: 100%;
+    top: 0;
+    bottom: 0;
   }
-  @keyframes move-right2 {
-    0% {
-      right: 0px;
-    }
-    100% {
-      right: -288px;
-    }
+  &.top {
+    left: 0;
+  }
+  &.bottom {
+    left: 0;
+    bottom: 0;
   }
 }
 
-.v-enter-active {
-  animation: move-right1 0.3s ease;
-}
-.v-leave-active {
-  animation: move-right2 0.3s ease;
-}
 .v-enter-active,
 .v-leave-active {
-  transition: opacity 0.3s ease;
+  transition: all 0.3s ease;
 }
 
 .v-enter-from,
