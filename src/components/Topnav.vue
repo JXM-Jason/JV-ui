@@ -1,7 +1,15 @@
 <template>
   <div class="TopNav">
-    <span class="toggleAside" @click="toggleAside">toggle</span>
-    <div class="logo">logo</div>
+    <span class="toggleAside" @click="toggleAside">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-menu"></use>
+      </svg>
+    </span>
+    <router-link to="/" class="logo">
+      <svg class="icon" aria-hidden="true">
+        <use xlink:href="#icon-logo"></use>
+      </svg>
+    </router-link>
 
     <ul class="nav">
       <li>
@@ -38,28 +46,38 @@ export default {
   justify-content: space-between;
   text-align: center;
   position: relative;
+  padding: 0px 60px;
   .toggleAside {
-    border: 1px solid blue;
     display: none;
     position: absolute;
     left: 30px;
     top: 25px;
+    > svg {
+      width: 32px;
+      height: 32px;
+    }
   }
   .logo {
-    border: 1px solid blue;
     width: 76px;
     height: 76px;
     line-height: 76px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    > svg {
+      width: 56px;
+      height: 56px;
+    }
+    > svg:hover {
+      scale: 1.1;
+    }
   }
   .nav {
-    border: 1px solid blue;
     display: flex;
     flex-direction: row;
-    margin-right: 20px;
     li {
       display: flex;
       align-items: center;
-      color: red;
       margin: 0px 15px;
     }
   }

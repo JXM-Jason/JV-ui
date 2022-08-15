@@ -33,7 +33,6 @@
 </template>
 
 <script lang="ts">
-import { onUpdated } from "vue";
 export default {
   props: {
     direction: {
