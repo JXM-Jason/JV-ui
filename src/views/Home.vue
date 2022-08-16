@@ -4,7 +4,7 @@
       <TopNav class="Nav" />
       <div class="banner">
         <h1>Javi-UI</h1>
-        <h2>一款基于Vue3的 UI 框架</h2>
+        <h2>一款基于Vue3的 UI 组件库</h2>
         <p class="actions">
           <a href="https://github.com/JXM-Jason/JV-ui" target="_blank">
             GitHub

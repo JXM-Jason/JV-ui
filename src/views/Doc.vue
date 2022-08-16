@@ -43,7 +43,6 @@
         </aside>
       </Transition>
       <main>
-        主要内容
         <router-view></router-view>
       </main>
     </div>
