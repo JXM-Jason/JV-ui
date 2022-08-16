@@ -16,7 +16,7 @@
         <router-link to="/">首页</router-link>
       </li>
       <li>
-        <router-link to="/Doc">文档</router-link>
+        <router-link to="/Doc/Introduce">文档</router-link>
       </li>
     </ul>
   </div>

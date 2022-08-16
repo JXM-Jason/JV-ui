@@ -6,8 +6,10 @@
         <h1>Javi-UI</h1>
         <h2>一款基于Vue3的 UI 框架</h2>
         <p class="actions">
-          <a href="https://github.com/">GitHub</a>
-          <a href="/#/Doc">开始</a>
+          <a href="https://github.com/JXM-Jason/JV-ui" target="_blank">
+            GitHub
+          </a>
+          <a href="/#/Doc/Introduce">开始</a>
         </p>
       </div>
     </div>
@@ -79,7 +81,7 @@ export default {
     }
   }
   .content {
-    width: 400px;
+    // width: 400px;
     margin: 64px auto;
     padding: 0 16px;
     > ul {

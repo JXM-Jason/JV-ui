@@ -19,25 +19,25 @@
           <h2>组件列表</h2>
           <ol>
             <li>
-              <router-link to="/Doc/Switch">switch&nbsp;组件</router-link>
+              <router-link to="/Doc/Switch">Switch&nbsp;开关</router-link>
             </li>
             <li>
-              <router-link to="/Doc/Button">button&nbsp;组件</router-link>
+              <router-link to="/Doc/Button">Button&nbsp;按钮</router-link>
             </li>
             <li>
-              <router-link to="/Doc/Dialog">dialog&nbsp;组件</router-link>
+              <router-link to="/Doc/Dialog">Dialog&nbsp;对话框</router-link>
             </li>
-            <li><router-link to="/Doc/Tabs">tabs&nbsp;组件</router-link></li>
+            <li><router-link to="/Doc/Tabs">Tabs&nbsp;选项卡</router-link></li>
             <li>
-              <router-link to="/Doc/Select">Select&nbsp;组件</router-link>
+              <router-link to="/Doc/Select">Select&nbsp;选择器</router-link>
             </li>
             <li>
               <router-link to="/Doc/Notification"
-                >Notification&nbsp;组件</router-link
+                >Notification&nbsp;通知</router-link
               >
             </li>
             <li>
-              <router-link to="/Doc/Drawer">Drawer&nbsp;组件</router-link>
+              <router-link to="/Doc/Drawer">Drawer&nbsp;抽屉</router-link>
             </li>
           </ol>
         </aside>
@@ -72,25 +72,28 @@ export default {
     height: 100vh;
     height: calc(100vh - 76px);
     > aside {
-      width: 250px;
-      height: 100%;
       box-shadow: 5px 0 5px rgb(51 51 51 / 10%);
-      padding: 10px;
-      text-align: left;
+      h2 {
+        padding: 10px;
+      }
       > ol {
-        border: 1px solid red;
         li {
-          padding: 0px 10px;
           height: 40px;
           line-height: 40px;
           a {
             display: inline-block;
             width: 100%;
             height: 100%;
+            padding: 0px 30px;
+            white-space: nowrap;
           }
         }
         li:hover {
           background-color: rgb(247, 241, 241);
+        }
+        .router-link-active {
+          background-color: rgb(247, 241, 241);
+          // background-color: #e9f1f8;
         }
       }
     }

@@ -24,8 +24,6 @@ export default {
   setup(props, context) {
     const bool = ref(false);
     const defaultValue = ref(true);
-    console.log("switch", context.attrs);
-
     return { bool, defaultValue };
   },
 };
