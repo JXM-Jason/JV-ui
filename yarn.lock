@@ -1494,6 +1494,11 @@
     "picocolors" "^1.0.0"
     "source-map-js" "^1.0.2"
 
+"prismjs@^1.28.0":
+  "integrity" "sha512-8aaXdYvl1F7iC7Xm1spqSaY/OJBpYW3v+KJ+F17iYxvdc8sfjW194COK5wVhMZX45tGteiBQgdvD/nhxcRwylw=="
+  "resolved" "https://registry.npmmirror.com/prismjs/-/prismjs-1.28.0.tgz"
+  "version" "1.28.0"
+
 "pump@^3.0.0":
   "integrity" "sha512-LwZy+p3SFs1Pytd/jYct4wpv49HiYCqd9Rlc5ZVdk0V+8Yzv6jR5Blk3TRmPL1ft69TxP0IMZGJ+WPFU2BFhww=="
   "resolved" "https://registry.npmmirror.com/pump/-/pump-3.0.0.tgz"
