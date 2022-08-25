@@ -17,6 +17,7 @@ export default {
     import(props.path).then((result) => {
       content.value = result.default;
     });
+    return { content };
   },
 };
 </script>
