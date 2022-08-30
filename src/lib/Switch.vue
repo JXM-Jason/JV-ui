@@ -32,7 +32,7 @@ export default {
 
 <style lang="scss">
 $h: 23px;
-$h2: $h - 3px;
+$h2: $h - 5px;
 $color: #2d8cf0;
 .Jv-ui {
   position: relative;

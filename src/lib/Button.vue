@@ -45,7 +45,7 @@ button.Jv-ui-button {
   display: inline-block;
   font-size: 14px;
   text-align: center;
-  padding: 12px 20px;
+  padding: 10px 14px;
   border: 1px solid #dcdfe6;
   background: white;
   color: #313234;
