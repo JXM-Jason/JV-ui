@@ -1,97 +1,54 @@
 <template>
   <div>
     <h1>Switch示例</h1>
-    <!-- <div class="demo">
-      <div class="demo-component">
-        <component :is="SwitchDemo1" />
-      </div>
-      <div class="demo-actions">
-        <Button>查看代码</Button>
-      </div>
-      <div class="demo-code">
-        <pre
-          class="language-html"
-          v-html="
-            Prism.highlight(
-              SwitchDemo1.__sourceCode,
-              Prism.languages.html,
-              'html'
-            )
-          "
-        ></pre>
-      </div>
-    </div> -->
-
     <Demo :component="SwitchDemo1" />
-
-    <!-- <div class="demo">
-      <div class="demo-component">
-        <component :is="SwitchDemo2" />
-      </div>
-      <div class="demo-actions">
-        <Button>查看代码</Button>
-      </div>
-      <div class="demo-code">
-        <pre
-          class="language-html"
-          v-html="
-            Prism.highlight(
-              SwitchDemo2.__sourceCode,
-              Prism.languages.html,
-              'html'
-            )
-          "
-        ></pre>
-      </div>
-    </div> -->
-
     <Demo :component="SwitchDemo2" />
-
-    <!-- <div class="demo">
-      <div class="demo-component">
-        <component :is="SwitchDemo3" />
-      </div>
-      <div class="demo-actions">
-        <Button>查看代码</Button>
-      </div>
-      <div class="demo-code">
-        <pre
-          class="language-html"
-          v-html="
-            Prism.highlight(
-              SwitchDemo3.__sourceCode,
-              Prism.languages.html,
-              'html'
-            )
-          "
-        ></pre>
-      </div>
-    </div> -->
-
     <Demo :component="SwitchDemo3" />
-
-    <!-- <div class="demo">
-      <div class="demo-component">
-        <component :is="SwitchDemo4" />
-      </div>
-      <div class="demo-actions">
-        <Button>查看代码</Button>
-      </div>
-      <div class="demo-code">
-        <pre
-          class="language-html"
-          v-html="
-            Prism.highlight(
-              SwitchDemo4.__sourceCode,
-              Prism.languages.html,
-              'html'
-            )
-          "
-        ></pre>
-      </div>
-    </div> -->
-
     <Demo :component="SwitchDemo4" />
+    <div class="Jv-ui-attributes">
+      <h2>Attributes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th class="Jv-ui-title">参数</th>
+            <th class="Jv-ui-title">说明</th>
+            <th class="Jv-ui-title">类型</th>
+            <th class="Jv-ui-title">可选值</th>
+            <th class="Jv-ui-title">默认值</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="Jv-ui-title">value</td>
+            <td class="Jv-ui-title">绑定值</td>
+            <td class="Jv-ui-title">boolean</td>
+            <td class="Jv-ui-title">true/false</td>
+            <td class="Jv-ui-title">false</td>
+          </tr>
+          <tr>
+            <td class="Jv-ui-title">disabled</td>
+            <td class="Jv-ui-title">是否禁用</td>
+            <td class="Jv-ui-title">boolean</td>
+            <td class="Jv-ui-title">———</td>
+            <td class="Jv-ui-title">———</td>
+          </tr>
+          <tr>
+            <td class="Jv-ui-title">size</td>
+            <td class="Jv-ui-title">表示大小</td>
+            <td class="Jv-ui-title">number</td>
+            <td class="Jv-ui-title">———</td>
+            <td class="Jv-ui-title">1</td>
+          </tr>
+          <tr>
+            <td class="Jv-ui-title">color</td>
+            <td class="Jv-ui-title">表示颜色</td>
+            <td class="Jv-ui-title">String</td>
+            <td class="Jv-ui-title">———</td>
+            <td class="Jv-ui-title">#2d8cf0</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 <script lang="ts">
@@ -130,6 +87,7 @@ $border-color: #d9d9d9;
 .demo {
   border: 1px solid $border-color;
   margin: 16px 0 32px;
+  // max-width: 500px;
   > h2 {
     font-size: 20px;
     padding: 8px 16px;
@@ -150,6 +108,24 @@ $border-color: #d9d9d9;
       line-height: 1.1;
       font-family: Consolas, "Courier New", Courier, monospace;
       margin: 0;
+    }
+  }
+}
+.Jv-ui-attributes {
+  h2 {
+    margin-bottom: 20px;
+    color: rgb(83, 80, 80);
+    margin-left: 20px;
+  }
+  > table {
+    width: 100%;
+    .Jv-ui-title {
+      text-align: center;
+      white-space: nowrap;
+      color: #909399;
+      font-weight: 400;
+      border-bottom: 1px solid #dcdfe6;
+      padding: 15px;
     }
   }
 }

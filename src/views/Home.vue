@@ -81,7 +81,6 @@ export default {
     }
   }
   .content {
-    // width: 400px;
     margin: 64px auto;
     padding: 0 16px;
     > ul {

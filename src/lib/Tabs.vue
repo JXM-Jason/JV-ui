@@ -84,7 +84,6 @@ export default {
 
 <style lang="scss">
 .Jv-ui-Tabs {
-  // margin-bottom: 10px;
   border-bottom: 1px solid #e4e7ed;
   display: flex;
   position: relative;
@@ -93,9 +92,6 @@ export default {
     height: 40px;
     line-height: 40px;
     padding: 0px 10px;
-  }
-  .Jv-ui-Nav {
-    // border: 1px solid green;
   }
   .Jv-ui-activeBar {
     position: absolute;

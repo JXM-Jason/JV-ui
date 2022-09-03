@@ -21,7 +21,6 @@ export default {
   props: {
     themes: {
       type: String,
-      // default: "button",
     },
     disabled: {
       type: Boolean,

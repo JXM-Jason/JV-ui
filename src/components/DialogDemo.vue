@@ -1,69 +1,89 @@
 <template>
   <div>
-    <h3>对话框示例一</h3>
-    //直接在组件内填充相关内容
-    <Button @click="toggle">点击弹窗</Button>
+    <h1>Dialog示例</h1>
+    <Demo :component="DialogDemo1" />
+    <Demo :component="DialogDemo2" />
+    <Demo :component="DialogDemo3" />
 
-    <Dialog
-      :visible="x"
-      @update:value="x = $event"
-      :closeOnClickOverlay="false"
-      :OK="f1"
-      :Cancel="f2"
-    >
-      <template v-slot:title>
-        <strong>我是title提示</strong>
-      </template>
-      <template v-slot:content>
-        <div>我是内容content</div>
-      </template>
-    </Dialog>
-  </div>
-  <div>
-    <h3>对话框示例二</h3>
-    //一句话打开Dialog
-    <Button @click="showDialog">点击弹窗</Button>
+    <div class="Jv-ui-attributes">
+      <h2>Attributes</h2>
+      <table>
+        <thead>
+          <tr>
+            <th class="Jv-ui-title">参数</th>
+            <th class="Jv-ui-title">说明</th>
+            <th class="Jv-ui-title">类型</th>
+            <th class="Jv-ui-title">可选值</th>
+            <th class="Jv-ui-title">默认值</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td class="Jv-ui-title">visible</td>
+            <td class="Jv-ui-title">是否显示</td>
+            <td class="Jv-ui-title">boolean</td>
+            <td class="Jv-ui-title">false/true</td>
+            <td class="Jv-ui-title">false</td>
+          </tr>
+          <tr>
+            <td class="Jv-ui-title">closeOnClickOverlay</td>
+            <td class="Jv-ui-title">是否需要遮罩层</td>
+            <td class="Jv-ui-title">boolean</td>
+            <td class="Jv-ui-title">false/true</td>
+            <td class="Jv-ui-title">false</td>
+          </tr>
+
+          <tr>
+            <td class="Jv-ui-title">OK</td>
+            <td class="Jv-ui-title">关闭前的回调，会暂停 Dialog 的关闭</td>
+            <td class="Jv-ui-title">function</td>
+            <td class="Jv-ui-title">———</td>
+            <td class="Jv-ui-title">———</td>
+          </tr>
+          <tr>
+            <td class="Jv-ui-title">Cancel</td>
+            <td class="Jv-ui-title">关闭前的回调，会暂停 Dialog 的关闭</td>
+            <td class="Jv-ui-title">function</td>
+            <td class="Jv-ui-title">———</td>
+            <td class="Jv-ui-title">———</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 </template>
 
 <script lang="ts">
 import Dialog from "../lib/Dialog.vue";
-import Button from "../lib/Button.vue";
-import { openDialog } from "../lib/openDialog";
-import { h, ref } from "vue";
+import DialogDemo1 from "../components/DialogDemo1.vue";
+import DialogDemo2 from "../components/DialogDemo2.vue";
+import DialogDemo3 from "../components/DialogDemo3.vue";
+import Demo from "../components/Demo.vue";
 export default {
-  components: { Dialog, Button },
+  components: { Demo, Dialog, DialogDemo1 },
   setup() {
-    let x = ref(false);
-    let toggle = () => {
-      x.value = !x.value;
-    };
-    let f1 = () => {
-      console.log("f1");
-      return true;
-    };
-    let f2 = () => {
-      console.log("f2");
-    };
-
-    let showDialog = () => {
-      openDialog({
-        title: h("strong", "警醒"),
-        content: h("div", "像海绵一样，保持对外界事物的包容性持续学习"),
-        OK: () => {
-          console.log("确认");
-          return false;
-        },
-        Cancel: () => {
-          console.log("取消");
-        },
-      });
-    };
-
-    return { x, toggle, f1, f2, showDialog };
+    return { DialogDemo1, DialogDemo2, DialogDemo3 };
   },
 };
 </script>
 
-<style lang="scss" >
+<style lang="scss" scoped>
+.Jv-ui-attributes {
+  h2 {
+    margin-bottom: 20px;
+    color: rgb(83, 80, 80);
+    margin-left: 20px;
+  }
+  > table {
+    width: 100%;
+    .Jv-ui-title {
+      text-align: center;
+      white-space: nowrap;
+      color: #909399;
+      font-weight: 400;
+      border-bottom: 1px solid #dcdfe6;
+      padding: 15px;
+    }
+  }
+}
 </style>

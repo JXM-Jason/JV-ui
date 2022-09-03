@@ -1,6 +1,6 @@
 <template>
-  <div class="Doc">
-    <TopNav />
+  <div class="layout">
+    <TopNav class="nav" />
     <div class="content">
       <Transition>
         <aside v-show="asideView">
@@ -72,63 +72,81 @@ export default {
 };
 </script>
 <style lang="scss" scoped>
-.Doc {
-  .content {
-    display: flex;
-    // flex-direction: row;
-    z-index: 20;
-    height: 100vh;
-    height: calc(100vh - 76px);
-    padding-top: 30px;
-    padding-left: 190px;
-    > aside {
-      box-shadow: 5px 0 5px rgb(51 51 51 / 10%);
-      position: absolute;
-      height: 100%;
-      background-color: #ffffff;
-      z-index: 9;
-      top: 76px;
-      left: 0px;
-      h2 {
-        padding: 10px;
-      }
-      > ol {
-        li {
-          height: 40px;
-          line-height: 40px;
-          a {
-            display: inline-block;
-            width: 100%;
-            height: 100%;
-            padding: 0px 30px;
-            white-space: nowrap;
-          }
-        }
-        li:hover {
-          background-color: rgb(234, 239, 250);
-        }
-        .router-link-active {
-          background-color: rgb(234, 239, 250);
-        }
-      }
-    }
-    > main {
-      width: 100%;
-      height: calc(100vh - 76px);
-      margin-left: 0px;
-      overflow-y: scroll;
-      padding: 0px 40px;
-      // @media (max-width: 1300px) {
-      //   margin-left: 0px;
-      // }
-      // @media (max-width: 800px) {
-      //   margin-left: 0px;
-      // }
-      // @media (max-width: 500px) {
-      //   margin-left: 0px;
-      // }
+$aside-index: 9;
+.layout {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  > .nav {
+    flex-shrink: 0;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    z-index: 10;
+  }
+  > .content {
+    flex-grow: 1;
+    padding-top: 88px;
+    padding-left: 250px;
+    @media (max-width: 500px) {
+      padding-left: 0;
     }
   }
+}
+.content {
+  overflow: hidden;
+  display: flex;
+  > aside {
+    flex-shrink: 0;
+  }
+  > main {
+    flex-grow: 1;
+    padding: 56px 80px;
+    background: white;
+    z-index: 10;
+  }
+}
+aside {
+  box-shadow: 5px 0 5px rgb(51 51 51 / 10%);
+  background: white;
+  padding: 16px 0px;
+  position: fixed;
+  top: 76px;
+  left: 0;
+  height: 100%;
+  z-index: $aside-index;
+  z-index: 2;
+  > h2 {
+    margin-bottom: 4px;
+    padding: 0px 20px;
+    color: black;
+  }
+  > ol {
+    > li {
+      height: 40px;
+      line-height: 40px;
+      > a {
+        display: block;
+        text-decoration: none;
+        display: inline-block;
+        width: 100%;
+        height: 100%;
+        padding: 0px 50px;
+        white-space: nowrap;
+        color: black;
+        font-size: 18px;
+      }
+    }
+    li:hover {
+      background-color: rgb(234, 239, 250);
+    }
+    li .router-link-active {
+      background-color: rgb(234, 239, 250);
+    }
+  }
+}
+main {
+  overflow: auto;
 }
 @keyframes move-right1 {
   0% {

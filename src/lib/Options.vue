@@ -82,6 +82,7 @@ export default {
 <style lang="scss">
 .Jv-ui-container {
   position: absolute;
+  z-index: 90;
 }
 .Jv-ui-arrow {
   border-top: 10px solid transparent;
@@ -109,7 +110,6 @@ export default {
     color: #607996;
     border-radius: 4px;
     overflow: scroll;
-    // margin-top: 10px;
     top: 5px;
     .Jv-ui-select-item {
       height: 40px;

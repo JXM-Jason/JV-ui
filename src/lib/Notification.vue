@@ -56,7 +56,7 @@ export default {
   background-color: #fff;
   box-shadow: 0 2px 12px 0 rgb(0 0 0 / 10%);
   overflow: hidden;
-  z-index: 9;
+  z-index: 90;
   &.right {
     right: 16px;
     animation: move-right 0.3s ease-out;

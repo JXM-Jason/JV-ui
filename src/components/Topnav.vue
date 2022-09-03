@@ -79,6 +79,9 @@ export default {
       display: flex;
       align-items: center;
       margin: 0px 15px;
+      a {
+        color: black;
+      }
     }
   }
 }
