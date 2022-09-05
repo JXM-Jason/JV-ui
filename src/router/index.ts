@@ -9,17 +9,20 @@ import Select from "../components/SelectDemo.vue"
 import Notification from "../components/NotificationDemo.vue"
 import Drawer from "../components/DrawerDemo.vue"
 import Markdown from '../components/Markdown.vue'
+import Introduce from '../markdown/Introduce.md'
+import Install from '../markdown/Install.md'
+import GetStart from '../markdown/GetStart.md'
 import { h } from "vue"
-const renderMd = fileName=> h(Markdown,{path: `../markdown/${fileName}.md`,key:fileName}) 
+const renderMd = string=> h(Markdown,{content:string,key:string}) 
 const routes = [
   { path: "/", component: Home },
   {
     path: "/Doc",
     component: Doc,
     children: [
-      { path: "/Doc/Introduce", component: renderMd('Introduce') },
-      { path: "/Doc/Install", component: renderMd('Install') },
-      {path: "/Doc/GetStart", component: renderMd('GetStart')},
+      { path: "/Doc/Introduce", component: renderMd(Introduce) },
+      { path: "/Doc/Install", component: renderMd(Install) },
+      {path: "/Doc/GetStart", component: renderMd(GetStart)},
       { path: "/Doc/Switch", component: Switch },
       { path: "/Doc/Button", component: Button },
       { path: "/Doc/Dialog", component: Dialog },
