@@ -3,10 +3,10 @@
 </demo>
 
 <template>
-  <Button @click="open1">左上角</Button>
-  <Button @click="open2">左下角</Button>
-  <Button @click="open3">右上角</Button>
-  <Button @click="open4">右下角</Button>
+  <Button themes="main" @click="open1">左上角</Button>
+  <Button themes="danger" @click="open2">左下角</Button>
+  <Button themes="success" @click="open3">右上角</Button>
+  <Button themes="warning" @click="open4">右下角</Button>
 </template>
 
 <script lang="ts">

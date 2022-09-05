@@ -86,7 +86,7 @@ export default {
     bottom: 0;
     overflow: hidden;
     margin: 0;
-    z-index: 9;
+    z-index: 90;
   }
   &-container {
     position: relative;

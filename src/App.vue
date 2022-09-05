@@ -11,10 +11,8 @@ export default {
     TopNav,
   },
   setup() {
-    let clientWidth = document.documentElement.clientWidth;
-    const asideView = ref(clientWidth > 700 ? true : false);
-    console.log("asideView", asideView.value);
-
+    let clientWidth = ref(document.documentElement.clientWidth);
+    const asideView = ref(clientWidth.value > 700 ? true : false);
     provide("asideView", asideView);
   },
 };

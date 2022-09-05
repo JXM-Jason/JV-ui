@@ -32,6 +32,7 @@ export default {
       console.log("toggleAside");
 
       asideView.value = !asideView.value;
+      console.log("asideView.value", asideView.value);
     };
     return { toggleAside };
   },

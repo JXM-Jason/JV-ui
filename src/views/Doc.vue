@@ -50,7 +50,7 @@
 </template>
 
 <script lang="ts">
-import { computed, inject, onUpdated, Ref } from "vue";
+import { inject, Ref } from "vue";
 import TopNav from "../components/Topnav.vue";
 export default {
   components: {
@@ -58,15 +58,6 @@ export default {
   },
   setup() {
     let asideView = inject<Ref<boolean>>("asideView");
-    let calAsideView = computed(() => {
-      return asideView
-        ? (calAsideView.value = true)
-        : (calAsideView.value = false);
-    });
-    onUpdated(() => {
-      console.log("calAsideView", calAsideView.value);
-    });
-
     return { asideView };
   },
 };
@@ -82,7 +73,7 @@ $aside-index: 9;
     position: fixed;
     top: 0;
     width: 100%;
-    z-index: 10;
+    z-index: 12;
   }
   > .content {
     flex-grow: 1;
@@ -103,7 +94,6 @@ $aside-index: 9;
     flex-grow: 1;
     padding: 56px 80px;
     background: white;
-    z-index: 10;
   }
 }
 aside {
@@ -115,7 +105,7 @@ aside {
   left: 0;
   height: 100%;
   z-index: $aside-index;
-  z-index: 2;
+  z-index: 11;
   > h2 {
     margin-bottom: 4px;
     padding: 0px 20px;
