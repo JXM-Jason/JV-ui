@@ -55,8 +55,6 @@ export default {
     let header = ref(false);
 
     let openDrawer1 = () => {
-      console.log("xxxxxxx1");
-
       drawer1.value = true;
     };
     let openDrawer2 = () => {

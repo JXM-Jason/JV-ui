@@ -29,10 +29,7 @@ export default {
   setup() {
     let asideView = inject<Ref<boolean>>("asideView");
     const toggleAside = () => {
-      console.log("toggleAside");
-
       asideView.value = !asideView.value;
-      console.log("asideView.value", asideView.value);
     };
     return { toggleAside };
   },
