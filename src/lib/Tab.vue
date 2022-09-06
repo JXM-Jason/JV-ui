@@ -8,6 +8,7 @@
 <script lang="ts">
 export default {
   name: "JvUiTab",
+  props: { title: { type: String }, name: { type: String } },
 };
 </script>
 <style lang="scss">

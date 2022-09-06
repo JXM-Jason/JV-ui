@@ -9,7 +9,7 @@
         selected: item.props.name === selected,
         disabled: item.props.disabled,
       }"
-      @click="handleClick"
+      @click="handleClick(item)"
       :ref="
         (el) => {
           if (el) NavItems[index] = el;
@@ -46,11 +46,11 @@ export default {
         throw new Error("Tabs组件的子组件必须是Tab!");
       }
     });
-    const handleClick = (e) => {
-      if (e.target.className == "Jv-ui-Nav disabled") {
+    const handleClick = (item) => {
+      if (item.props.disabled == "disabled") {
         return;
       } else {
-        context.emit("update:selected", e.target.__vnode.key);
+        context.emit("update:selected", item.props.name);
       }
     };
     const TabFilter = computed(() => {
