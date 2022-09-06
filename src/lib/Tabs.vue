@@ -41,7 +41,8 @@ export default {
     const indicator = ref<HTMLDivElement>();
     const container = ref<HTMLDivElement>();
     TabArray.forEach((tag) => {
-      if (tag.type !== Tab) {
+      // @ts-ignore
+      if (tag.type.name !== Tab.name) {
         throw new Error("Tabs组件的子组件必须是Tab!");
       }
     });
