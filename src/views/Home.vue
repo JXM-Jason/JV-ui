@@ -9,7 +9,7 @@
           <a href="https://github.com/JXM-Jason/JV-ui" target="_blank">
             GitHub
           </a>
-          <a href="/#/Doc/Introduce">开始</a>
+          <router-link to="/Doc/Introduce">开始</router-link>
         </p>
       </div>
     </div>
