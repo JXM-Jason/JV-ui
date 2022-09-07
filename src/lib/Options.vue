@@ -1,31 +1,23 @@
-<template>
-  <!-- v-if="visible" -->
-  <template v-if="visible">
-    <teleport to="body">
-      <div
-        class="Jv-ui-container"
-        :style="{ left: left + 11 + 'px', top: top + 'px' }"
-      >
-        <div class="Jv-ui-arrow"></div>
-        <div class="Jv-ui-select-dropdown">
-          <ul class="Jv-ui-options" @scroll="ListScroll" id="ulDom">
-            <li
-              class="Jv-ui-select-item"
-              v-for="item in optionData"
-              :key="item.key"
-              @mousedown="choose($event)"
-              :class="{
-                select: emitItem == item.label ? true : false,
-                disabled: item.disabled,
-              }"
-            >
-              {{ item.label }}
-            </li>
-          </ul>
-        </div>
-      </div>
-    </teleport>
-  </template>
+<template >
+  <div class="Jv-ui-container" v-if="visible">
+    <div class="Jv-ui-arrow"></div>
+    <div class="Jv-ui-select-dropdown">
+      <ul class="Jv-ui-options" @scroll="ListScroll" id="ulDom">
+        <li
+          class="Jv-ui-select-item"
+          v-for="item in optionData"
+          :key="item.key"
+          @mousedown="choose($event)"
+          :class="{
+            select: emitItem == item.label ? true : false,
+            disabled: item.disabled,
+          }"
+        >
+          {{ item.label }}
+        </li>
+      </ul>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -38,14 +30,6 @@ export default {
     },
     optionData: {
       type: Object,
-    },
-    left: {
-      //动态获取下拉框位置
-      type: Number,
-    },
-    top: {
-      //动态获取下拉框位置
-      type: Number,
     },
   },
   setup(props, context) {
@@ -83,6 +67,7 @@ export default {
 .Jv-ui-container {
   position: absolute;
   z-index: 90;
+  left: 11px;
 }
 .Jv-ui-arrow {
   border-top: 10px solid transparent;

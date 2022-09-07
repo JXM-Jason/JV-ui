@@ -15,8 +15,6 @@
       :optionData="FilterData"
       :visible="value"
       @emitData="changePlaceholder"
-      :left="resultX"
-      :top="resultY"
     ></options>
   </div>
 </template>
@@ -37,15 +35,7 @@ export default {
   setup(props, context) {
     let FilterData = [];
     let selected = ref(null);
-    let resultX = ref(null); //最后的X
-    let resultY = ref(null); //最后的Y
-    let showOptions = (e) => {
-      let clientX = e.clientX;
-      let clientY = e.clientY;
-      let offsetX = e.offsetX;
-      let offsetY = e.offsetY;
-      resultX.value = clientX - offsetX;
-      resultY.value = 40 - offsetY + clientY;
+    let showOptions = () => {
       context.emit("update:value", !props.value);
     };
     let hideOptions = () => {
@@ -73,8 +63,6 @@ export default {
       FilterData,
       changePlaceholder,
       selectItem,
-      resultX,
-      resultY,
     };
   },
 };
